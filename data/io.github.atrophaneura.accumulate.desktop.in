@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=accumulate
+Exec=accumulate
+Icon=io.github.atrophaneura.accumulate
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

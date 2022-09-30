@@ -1,0 +1,7 @@
+data/io.github.atrophaneura.accumulate.desktop.in
+data/io.github.atrophaneura.accumulate.appdata.xml.in
+data/io.github.atrophaneura.accumulate.gschema.xml
+src/window.ui
+src/main.py
+src/window.py
+
