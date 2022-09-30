@@ -15,27 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Adw
 
+from .constants import rootdir, app_id, build_type
 
-@Gtk.Template(resource_path='/io/github/atrophaneura/accumulate/window.ui')
-class AccumulateWindow(Gtk.ApplicationWindow):
-    __gtype_name__ = 'AccumulateWindow'
+@Gtk.Template(resource_path=f"{rootdir}/ui/window.ui")
+class MainWindow(Adw.ApplicationWindow):
+    __gtype_name__ = "MainWindow"
 
-    label = Gtk.Template.Child()
+    content = Gtk.Template.Child()
+    toast_overlay = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-
-class AboutDialog(Gtk.AboutDialog):
-
-    def __init__(self, parent):
-        Gtk.AboutDialog.__init__(self)
-        self.props.program_name = 'accumulate'
-        self.props.version = "0.1.0"
-        self.props.authors = ['0xMRTT']
-        self.props.copyright = '2022 0xMRTT'
-        self.props.logo_icon_name = 'io.github.atrophaneura.accumulate'
-        self.props.modal = True
-        self.set_transient_for(parent)
