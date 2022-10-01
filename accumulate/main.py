@@ -28,6 +28,9 @@ from .window import AccumulateWindow
 from gi.repository import Gtk, Gio, Adw
 import sys
 import gi
+import json
+
+from .client import GCollector
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -59,7 +62,7 @@ class AccumulateApplication(Adw.Application):
         We raise the application's main window, creating it if
         necessary.
         """
-        self.win = self.props.active_window
+        self.win: AccumulateWindow = self.props.active_window
         if not self.win:
             self.win = AccumulateWindow(application=self,
                                    default_height=self.settings.get_int(
@@ -70,6 +73,34 @@ class AccumulateApplication(Adw.Application):
                                        "window-fullscreen"),
                                    maximized=self.settings.get_boolean("window-maximized"),)
         self.win.present()
+        
+        self.data = GCollector().collect_data()
+        print(self.data)
+        
+        
+        self.win.default_browser = self.data['Default browser']
+        self.win.salted_machine_id_hash.set_subtitle(self.data['Unique ID'])
+        self.win.workspaces_on_primary_display.set_label(str(self.data["Workspaces only on primary"]))
+        self.win.dynamic_or_fixed_workspaces.set_label(str(self.data["Workspaces dynamic"]))
+        self.win.number_of_user_accounts.set_label(str(self.data["Number of users"]))
+        self.win.remote_desktop.set_label(str(self.data["Remote desktop"]))
+        self.win.remote_login.set_label(str(self.data["Remote login"]))
+        self.win.multimedia_sharing.set_label(str(self.data["Multimedia sharing"]))
+        self.win.file_sharing.set_label(str(self.data["File sharing"]))
+        self.win.flathub_enabled.set_label(str(self.data["Flathub enabled"]))
+        self.win.flatpak_installed.set_label(str(self.data["Flatpak installed"]))
+        self.win.operating_system.set_label(self.data["Operating system"])
+        self.win.hardware_model.set_label(self.data["Hardware model"])
+        self.win.hardware_vendor.set_label(self.data["Hardware vendor"])
+        
+        accounts = self.data["Online accounts"]
+        if accounts:
+            for account in accounts:
+                print(account)
+                account_row = Adw.ActionRow()
+                account_row.set_title(str(account))
+                self.win.online_accounts.add_row(account_row)
+                self.win.online_accounts.remove(self.win.no_online_accounts)
 
     def show_about_window(self, *_args):
         """Callback for the app.about action."""

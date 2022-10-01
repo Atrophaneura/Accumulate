@@ -34,6 +34,23 @@ class AccumulateWindow(Adw.ApplicationWindow):
     main = Gtk.Template.Child()
     content = Gtk.Template.Child()
     
+    hardware_model = Gtk.Template.Child()
+    hardware_vendor = Gtk.Template.Child()
+    operating_system = Gtk.Template.Child()
+    flatpak_installed = Gtk.Template.Child()
+    flathub_enabled = Gtk.Template.Child()
+    file_sharing = Gtk.Template.Child()
+    remote_desktop = Gtk.Template.Child()
+    remote_login = Gtk.Template.Child()
+    multimedia_sharing = Gtk.Template.Child()
+    no_online_accounts = Gtk.Template.Child()
+    online_accounts = Gtk.Template.Child()
+    workspaces_on_primary_display = Gtk.Template.Child()
+    dynamic_or_fixed_workspaces = Gtk.Template.Child()
+    number_of_user_accounts = Gtk.Template.Child()
+    salted_machine_id_hash = Gtk.Template.Child()
+    default_browser = Gtk.Template.Child()
+    
     settings = Gio.Settings(app_id)
 
     def __init__(self, **kwargs):

@@ -39,6 +39,7 @@ accumulate_sources = [
   '__init__.py',
   'main.py',
   'window.py',
+  'client.py',
 ]
 
 PY_INSTALLDIR.install_sources(accumulate_sources, subdir: 'accumulate')
