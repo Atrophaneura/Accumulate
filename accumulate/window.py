@@ -33,7 +33,8 @@ class AccumulateWindow(Adw.ApplicationWindow):
     success = Gtk.Template.Child()
     main = Gtk.Template.Child()
     content = Gtk.Template.Child()
-    
+    already_submitted = Gtk.Template.Child()
+        
     hardware_model = Gtk.Template.Child()
     hardware_vendor = Gtk.Template.Child()
     operating_system = Gtk.Template.Child()

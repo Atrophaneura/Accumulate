@@ -29,8 +29,9 @@ from gi.repository import Gtk, Gio, Adw
 import sys
 import gi
 import json
+import os
 
-from .client import GCollector
+from .client import GCollector, STATUS_FILE
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -73,6 +74,11 @@ class AccumulateApplication(Adw.Application):
                                        "window-fullscreen"),
                                    maximized=self.settings.get_boolean("window-maximized"),)
         self.win.present()
+        
+        if os.path.isfile(STATUS_FILE):
+            self.win.bottom_bar.hide()
+            self.win.view_stack.set_visible_child(self.win.already_submitted)
+
         
         self.data = GCollector().collect_data()
         print(self.data)
@@ -126,6 +132,7 @@ class AccumulateApplication(Adw.Application):
                 self.win.enabled_extensions.add_row(row)
                 self.win.enabled_extensions.remove(self.win.no_enabled_extensions)
         
+        self.data = json.dumps(self.data)
 
     def show_about_window(self, *_args):
         """Callback for the app.about action."""

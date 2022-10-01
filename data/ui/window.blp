@@ -222,6 +222,17 @@ template AccumulateWindow : Adw.ApplicationWindow {
             }
           }
 
+          Gtk.Stack already_submitted {
+            hexpand: true;
+            overflow: hidden;
+
+            Adw.StatusPage {
+              title: _("Collection already submitted");
+              description: _("Thank you for helping us improve the GNOME experience for you and other users.");
+              icon-name: "checkmark-large-symbolic";
+            }
+          }
+
         }
       }
       
