@@ -26,8 +26,13 @@ class AccumulateWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'AccumulateWindow'
 
     main_view = Gtk.Template.Child()
-    titlebar = Gtk.Template.Child()
-    title = Gtk.Template.Child()
+    main = Gtk.Template.Child()
+    bottom_bar = Gtk.Template.Child()
+    send_button = Gtk.Template.Child()
+    view_stack = Gtk.Template.Child()
+    success = Gtk.Template.Child()
+    main = Gtk.Template.Child()
+    content = Gtk.Template.Child()
     
     settings = Gio.Settings(app_id)
 

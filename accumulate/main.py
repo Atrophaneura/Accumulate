@@ -50,6 +50,8 @@ class AccumulateApplication(Adw.Application):
 
     def on_send_action(self, widget, _):
         print('app.send action activated')
+        self.win.bottom_bar.hide()
+        self.win.view_stack.set_visible_child(self.win.success)
 
     def do_activate(self):
         """Called when the application is activated.

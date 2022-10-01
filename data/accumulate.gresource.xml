@@ -12,5 +12,10 @@
       preprocess="xml-stripblanks"
       alias="larger-brush-symbolic.svg"
      >icons/scalable/actions/larger-brush-symbolic.svg</file>
+    <file
+      preprocess="xml-stripblanks"
+      alias="checkmark-large-symbolic.svg"
+     >icons/scalable/actions/checkmark-large-symbolic.svg</file>
+  
   </gresource>
 </gresources>
