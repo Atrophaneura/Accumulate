@@ -6,7 +6,22 @@ Accumulate GNOME info and send them to GNOME Team
 
 ## Install 
 
+### AUR
+
+There is a package called `accumulate-git` for Accumulate available in the AUR
+
+### From source
+
+```
+gh repo cllone Atrophaneura/Accumulate
+cd Accumulate
+sudo meson builddir --prefix=/usr/local
+make install
+```
+
 ## Contribute 
+
+See [CONTRIBUTING]
 
 ### Translate 
 
