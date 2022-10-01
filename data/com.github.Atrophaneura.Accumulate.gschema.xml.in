@@ -14,7 +14,7 @@
 			<default>false</default>
 		</key>
 		<key name="server-url" type="s">
-			<default>https://gnome-info-collect-app.apps.openshift4.gnome.org</default>
+			<default>'https://gnome-info-collect-app.apps.openshift4.gnome.org'</default>
 		</key>
 	</schema>
 </schemalist>
