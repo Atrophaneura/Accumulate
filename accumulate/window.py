@@ -50,6 +50,12 @@ class AccumulateWindow(Adw.ApplicationWindow):
     number_of_user_accounts = Gtk.Template.Child()
     salted_machine_id_hash = Gtk.Template.Child()
     default_browser = Gtk.Template.Child()
+    favourited_apps = Gtk.Template.Child()
+    no_favourited_apps = Gtk.Template.Child()
+    installed_apps = Gtk.Template.Child()
+    no_installed_apps = Gtk.Template.Child()
+    enabled_extensions = Gtk.Template.Child()
+    no_enabled_extensions = Gtk.Template.Child()
     
     settings = Gio.Settings(app_id)
 

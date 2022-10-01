@@ -141,6 +141,31 @@ template AccumulateWindow : Adw.ApplicationWindow {
                     }
                   }
 
+                  Adw.ExpanderRow favourited_apps {
+                    title: _("Favourite Applications");
+                  
+                    Adw.ActionRow no_favourited_apps {
+                      title: _("No favourite applications");
+                    }
+                  }
+
+                  Adw.ExpanderRow installed_apps {
+                    title: _("Installed Applications");
+                  
+                    // LOL, nobody will ever see this
+                    Adw.ActionRow no_installed_apps {
+                      title: _("No installed applications");
+                    }
+                  }
+
+                  Adw.ExpanderRow enabled_extensions {
+                    title: _("Enabled Extensions");
+                  
+                    Adw.ActionRow no_enabled_extensions {
+                      title: _("No enabled extensions");
+                    }
+                  }
+
                   Adw.ActionRow {
                     title: _("Workspaces on primary display");
 

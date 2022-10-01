@@ -101,6 +101,31 @@ class AccumulateApplication(Adw.Application):
                 account_row.set_title(str(account))
                 self.win.online_accounts.add_row(account_row)
                 self.win.online_accounts.remove(self.win.no_online_accounts)
+                
+        favourite_apps = self.data["Favourited apps"]
+        if favourite_apps:
+            for favourite in favourite_apps:
+                row = Adw.ActionRow()
+                row.set_title(str(favourite))
+                self.win.favourited_apps.add_row(row)
+                self.win.favourited_apps.remove(self.win.no_favourited_apps)
+                
+        installed_apps = self.data["Installed apps"]
+        if installed_apps:
+            for installed in installed_apps:
+                row = Adw.ActionRow()
+                row.set_title(str(installed))
+                self.win.installed_apps.add_row(row)
+                self.win.installed_apps.remove(self.win.no_installed_apps)
+                
+        enabled_extensions = self.data["Enabled extensions"]
+        if installed_apps:
+            for extension in enabled_extensions:
+                row = Adw.ActionRow()
+                row.set_title(str(extension))
+                self.win.enabled_extensions.add_row(row)
+                self.win.enabled_extensions.remove(self.win.no_enabled_extensions)
+        
 
     def show_about_window(self, *_args):
         """Callback for the app.about action."""
