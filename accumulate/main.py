@@ -31,7 +31,7 @@ import gi
 import json
 import os
 
-from .client import GCollector, STATUS_FILE
+from .client import GCollector, STATUS_FILE, upload_data
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -55,8 +55,26 @@ class AccumulateApplication(Adw.Application):
     def on_send_action(self, widget, _):
         print('app.send action activated')
         self.win.bottom_bar.hide()
-        self.win.view_stack.set_visible_child(self.win.success)
+        
+        dialog = Adw.MessageDialog(
+            transient_for=self.props.active_window,
+            heading="Send data",
+            body="This information will be collected anonymously and will be used to help improve the GNOME project",
+        )
 
+        dialog.add_response("cancel", "Cancel")
+        dialog.add_response("send", "Send")
+        dialog.set_response_appearance(
+            "send", Adw.ResponseAppearance.SUGGESTED)
+        dialog.set_default_response("cancel")
+        dialog.set_close_response("cancel")
+        dialog.connect("response", self.send_data)
+        dialog.present()
+
+    def send_data(self, _unused, response):
+        if response == "send":
+            upload_data(self.server, self.data)
+            self.win.view_stack.set_visible_child(self.win.success)
     def do_activate(self):
         """Called when the application is activated.
 
