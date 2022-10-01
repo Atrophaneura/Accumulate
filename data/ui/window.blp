@@ -32,13 +32,17 @@ template AccumulateWindow : Adw.ApplicationWindow {
       [overlay]
       Gtk.Revealer revealer {
         valign: end;
-        halign: end;
+        halign: center;
         transition-type: crossfade;
         transition-duration: 200;
         reveal-child: true;
         child: Gtk.Box {
-          Label {
-            label: _("You can disable this at any time in the Privacy section of Settings.");
+          Gtk.Button send_button {
+            styles ["suggested-action"]
+            label: _("Share informations");
+            tooltip-text: _("Send anonymous date to the server");
+            use-underline: true;
+            action-name: "app.send";
           }
         };
       }
