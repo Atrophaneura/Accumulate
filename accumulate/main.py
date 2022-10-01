@@ -24,7 +24,7 @@ from .constants import (
     help_url,
     project_url,
 )
-from .window import MainWindow
+from .window import AccumulateWindow
 from gi.repository import Gtk, Gio, Adw
 import sys
 import gi
@@ -36,12 +36,20 @@ gi.require_version('Adw', '1')
 class AccumulateApplication(Adw.Application):
     """The main application singleton class."""
 
+    settings = Gio.Settings.new(app_id)
+
     def __init__(self):
-        super().__init__(application_id='io.github.Atrophaneura.Accumulate',
+        super().__init__(application_id=app_id,
                          flags=Gio.ApplicationFlags.FLAGS_NONE)
+        self.server = self.settings.get_string("server")
+        
         self.create_action('quit', self.quit, ['<primary>q'])
-        self.create_action('about', self.on_about_action)
+        self.create_action('about', self.show_about_window)
         self.create_action('preferences', self.on_preferences_action)
+        self.create_action('send', self.on_send_action)
+
+    def on_send_action(self, widget, _):
+        print('app.send action activated')
 
     def do_activate(self):
         """Called when the application is activated.
@@ -49,12 +57,19 @@ class AccumulateApplication(Adw.Application):
         We raise the application's main window, creating it if
         necessary.
         """
-        win = self.props.active_window
-        if not win:
-            win = MainWindow(application=self)
-        win.present()
+        self.win = self.props.active_window
+        if not self.win:
+            self.win = AccumulateWindow(application=self,
+                                   default_height=self.settings.get_int(
+                                       "window-height"),
+                                   default_width=self.settings.get_int(
+                                       "window-width"),
+                                   fullscreened=self.settings.get_boolean(
+                                       "window-fullscreen"),
+                                   maximized=self.settings.get_boolean("window-maximized"),)
+        self.win.present()
 
-    def on_about_action(self, widget, _):
+    def show_about_window(self, *_args):
         """Callback for the app.about action."""
         about = Adw.AboutWindow(
             transient_for=self.props.active_window,
@@ -64,27 +79,23 @@ class AccumulateApplication(Adw.Application):
             website=project_url,
             support_url=help_url,
             issue_url=bugtracker_url,
-            developers=[
-                "0xMRTT https://github.com/0xMRTT",
+            developers=["0xMRTT https://github.com/0xMRTT", ],
+            artists=[""],
+            designers=[""],
+            # Translators: This is a place to put your credits (formats: "Name
+            # https://example.com" or "Name <email@example.com>", no quotes)
+            # and is not meant to be translated literally.
+            translator_credits=[
+                "0xMRTT https://github.com/0xMRTT"
             ],
-            artists=["David Lapshin https://github.com/daudix-UFO"],
-            designers=["David Lapshin https://github.com/daudix-UFO"],
-            # Translators: This is a place to put your credits (formats:
-            # "Name https://example.com" or "Name <email@example.com>",
-            # no quotes) and is not meant to be translated literally.
-            translator_credits="""0xMRTT https://github.com/0xMRTT
-                David Lapshin https://github.com/daudix-UFO
-            """,
             copyright="© 2022 Atrophaneura",
             license_type=Gtk.License.GPL_3_0,
             version=version,
             release_notes_version=rel_ver,
-        )
-        about.add_credit_section(
-            "Packagers",
-            [
-                "0xMRTT https://github.com/0xMRTT",
-            ],
+            # release_notes=_(
+            #     """
+            # """
+            # )
         )
         about.present()
 

@@ -14,11 +14,11 @@ python = import('python')
 # Project information
 PROJECT_URL = 'https://github.com/Atrophaneura/Accumulate'
 BUGTRACKER_URL = 'https://github.com/Atrophaneura/Accumulate/issues'
-HELP_URL = 'https://github.com/Atrophaneura/Accumulate/discussions'
-TRANSLATE_URL = 'https://hosted.weblate.org/projects/Atrophaneura/Accumulate'
+HELP_URL = 'https://github.com/orgs/Atrophaneura/discussions'
+TRANSLATE_URL = 'https://hosted.weblate.org/projects/Atrophaneura/Accumulate/'
 
 # Constants
-PROJECT_RDNN_NAME = 'io.github.Atrophaneura.Accumulate'
+PROJECT_RDNN_NAME = 'com.github.Atrophaneura.Accumulate'
 
 # Set APPLICATION_ID and VERSION_SUFFIX
 if get_option('buildtype') == 'debug'
@@ -36,11 +36,11 @@ endif
 
 dependency('glib-2.0')
 dependency('gtk4', version: '>= 4.5.0')
-dependency('libadwaita-1', version: '>= 1.2.alpha')
+dependency('libadwaita-1')
 dependency('pygobject-3.0', version: '>= 3.42.0')
 
 # Python installation directory
-PY_INSTALLDIR = python.find_installation('python3', required: true, modules: ['lxml'])
+PY_INSTALLDIR = python.find_installation('python3', required: true)
 
 # Check if python3 is installed
 if not PY_INSTALLDIR.found()
@@ -48,7 +48,8 @@ if not PY_INSTALLDIR.found()
 endif
 
 PKGDATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-MODULE_DIR = join_paths(PKGDATA_DIR, 'accumulate')
+MODULE_DIR = join_paths(PKGDATA_DIR, 'gradience')
+PLUGINS_DIR = join_paths(PKGDATA_DIR, 'gradience', 'plugins')
 
 # Install configuration data
 conf = configuration_data()

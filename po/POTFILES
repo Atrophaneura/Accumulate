@@ -1,6 +1,6 @@
-data/io.github.atrophaneura.accumulate.desktop.in.in
-data/io.github.atrophaneura.accumulate.appdata.xml.in.in
-data/io.github.atrophaneura.accumulate.gschema.xml.in
+data/com.github.Atrophaneura.Accumulate.desktop.in.in
+data/com.github.Atrophaneura.Accumulate.appdata.xml.in.in
+data/com.github.Atrophaneura.Accumulate.gschema.xml.in
 data/ui/window.blp
 accumulate/main.py
 accumulate/window.py

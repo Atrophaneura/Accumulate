@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/io/github/Atrophaneura/Accumulate">
+  <gresource prefix="/com/github/Atrophaneura/Accumulate">
     <file preprocess="xml-stripblanks">ui/window.ui</file>
+  </gresource>
+  <gresource prefix="/com/github/Atrophaneura/Accumulate/icons/scalable/actions/">
+    <file
+      preprocess="xml-stripblanks"
+      alias="grid-filled-symbolic.svg"
+     >icons/scalable/actions/grid-filled-symbolic.svg</file>
+    <file
+      preprocess="xml-stripblanks"
+      alias="larger-brush-symbolic.svg"
+     >icons/scalable/actions/larger-brush-symbolic.svg</file>
   </gresource>
 </gresources>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<schemalist gettext-domain="accumulate">
-	<schema id="@APP_ID@" path="/io/github/atrophaneura/accumulate/">
-	</schema>
-</schemalist>

@@ -1,14 +1,8 @@
-
-
-rootdir          = '/io/github/Atrophaneura/Accumulate'
-pkgdatadir       = '@PKGDATA_DIR@'
-localedir        = '@LOCALE_DIR@'
-
+rootdir          = '/com/github/Atrophaneura/Accumulate'
 app_id           = '@APP_ID@'
 rel_ver          = '@RELEASE_VER@'
 version          = '@VERSION@'
 build_type       = '@BUILD_TYPE@'
-
 project_url      = '@PROJECT_URL@'
 bugtracker_url   = '@BUGTRACKER_URL@'
 help_url         = '@HELP_URL@'

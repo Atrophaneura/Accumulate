@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template MainWindow : Adw.ApplicationWindow {
+template AccumulateWindow : Adw.ApplicationWindow {
   title: _("Accumulate");
   default-width: 1000;
   default-height: 700;
@@ -17,6 +17,7 @@ template MainWindow : Adw.ApplicationWindow {
         Adw.HeaderBar titlebar {
           centering-policy: strict;
 
+
           [title]
           Label title {
             label: _("Accumulate");
@@ -25,7 +26,16 @@ template MainWindow : Adw.ApplicationWindow {
           [end]
           Gtk.MenuButton {
             icon-name: "open-menu-symbolic";
-            menu-model: main-menu;
+            menu-model: primary_menu;
+          }
+
+          [end]
+          Gtk.Button send_button {
+            styles ["suggested-action"]
+            label: _("Send");
+            tooltip-text: _("Send anonymous date to the server");
+            use-underline: true;
+            action-name: "app.send";
           }
 
         }
@@ -34,7 +44,8 @@ template MainWindow : Adw.ApplicationWindow {
           orientation: vertical;
 
           Label {
-            label: _("No data");
+            label: _("Accumulate is a tool to collect anonymous data about your usage of GNOME.");
+            wrap: true;
           }
         }
       }
@@ -42,16 +53,19 @@ template MainWindow : Adw.ApplicationWindow {
   }
 }
 
-
-menu main-menu {
+menu primary_menu {
   section {
     item {
       label: _("Preferences");
       action: "app.preferences";
     }
     item {
+      label: _("Keyboard Shortcuts");
+      action: "win.show-help-overlay";
+    }
+    item {
       label: _("About Accumulate");
       action: "app.about";
-    }
+     }
   }
 }

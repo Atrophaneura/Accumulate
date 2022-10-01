@@ -7,10 +7,5 @@ global:
 	sudo ninja -C builddir install
 
 release:
-	sudo meson builddir --prefix=/usr --Dbuildtype=release --wipe
+	sudo meson builddir --prefix=/usr --buildtype=release --wipe
 	sudo ninja -C builddir install
-    
-user:
-	meson builddir --prefix="$(shell pwd)/builddir" --buildtype=debug --wipe
-	ninja -C builddir install
-	ninja -C builddir run

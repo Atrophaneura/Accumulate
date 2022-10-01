@@ -1,11 +1,10 @@
 {
-    "app-id" : "io.github.atrophaneura.accumulate",
+    "app-id" : "com.github.Atrophaneura.Accumulate.Devel",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "master",
+    "runtime-version" : "42",
     "sdk" : "org.gnome.Sdk",
     "command" : "accumulate",
     "finish-args" : [
-        "--share=network",
         "--share=ipc",
         "--socket=fallback-x11",
         "--device=dri",
@@ -24,15 +23,32 @@
     ],
     "modules" : [
         {
-            "name" : "accumulate",
-            "builddir" : true,
+            "name" : "blueprint-compiler",
             "buildsystem" : "meson",
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "file:///home/user/github.com/Atrophaneura/accumulate"
+                    "url" : "https://gitlab.gnome.org/jwestman/blueprint-compiler",
+                    "branch" : "main"
+                }
+            ]
+        },
+        {
+            "name" : "accumulate",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "config-opts": [
+                "-Dbuildtype=debug"
+            ],
+            "sources" : [
+                {
+                    "type" : "dir",
+                    "path" : "../../."
                 }
             ]
         }
-    ]
+    ],
+    "build-options" : {
+        "env" : {        }
+    }
 }

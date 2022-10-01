@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Accumulate
 Exec=accumulate
-Icon=@APP_ID@
+Icon=com.github.Atrophaneura.Accumulate
 Terminal=false
 Type=Application
 Categories=GTK;

@@ -1,5 +1,11 @@
 # Accumulate
 
-Generate report and send them to GNOME using `gnole-info-collect`. 
+Accumulate GNOME info and send them to GNOME Team
 
-Base on a [mockup](https://gitlab.gnome.org/Teams/Design/app-mockups/-/blob/master/gnome-collect/gnome-collect.svg)
+## Install 
+
+## Contribute 
+
+### Translate 
+
+[![Translation status](https://hosted.weblate.org/widgets/atrophaneura/-/Accumulate/open-graph.png)](https://hosted.weblate.org/engage/atrophaneura/)
