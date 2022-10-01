@@ -195,17 +195,10 @@ template AccumulateWindow : Adw.ApplicationWindow {
             hexpand: true;
             overflow: hidden;
 
-            Gtk.Box {
-              orientation: vertical;
-              spacing: 12;
-
-              Label {
-                label: _("Thank you for helping us improve GNOME!");
-              }
-
-              Label {
-                label: _("You can disable this at any time in the Privacy section of Settings.");
-              }
+            Adw.StatusPage {
+              title: _("Collection complete");
+              description: _("Thank you for helping us improve the GNOME experience for you and other users.");
+              icon-name: "check-mark-symbolic";
             }
           }
 
