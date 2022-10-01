@@ -6,13 +6,67 @@ template AccumulateWindow : Adw.ApplicationWindow {
   default-width: 1000;
   default-height: 700;
 
-  Adw.ToastOverlay toast_overlay {
-    Adw.Leaflet leaflet {
-      can-navigate-back: true;
-      can-unfold: false;
+  Adw.Flap flap {
+    Gtk.Overlay {
 
-      Gtk.Box main_view {
+      Adw.ToastOverlay toast_overlay {
+
+        Gtk.ScrolledWindow scrolled_window  {
+          focusable: true;
+          hexpand: true;
+          vexpand: true;
+
+          child: Gtk.Box {
+            orientation: vertical;
+
+            Adw.PreferencesGroup {
+              description: _("Accumulate is a tool to collect anonymous data about your usage of GNOME.");
+
+
+            }
+
+          };
+        }
+      }
+
+      [overlay]
+      Gtk.Revealer revealer {
+        valign: end;
+        halign: end;
+        transition-type: crossfade;
+        transition-duration: 200;
+        reveal-child: true;
+        child: Gtk.Box {
+          Label {
+            label: _("You can disable this at any time in the Privacy section of Settings.");
+          }
+        };
+      }
+
+      [falp]
+      Gtk.Stack success {
+        hexpand: true;
+        overflow: hidden;
+        transition-type: crossfade;
+
+        Gtk.Box {
+          orientation: vertical;
+          spacing: 12;
+
+          Label {
+            label: _("Thank you for helping us improve GNOME!");
+          }
+
+          Label {
+            label: _("You can disable this at any time in the Privacy section of Settings.");
+          }
+        }
+      }
+
+      [overlay]
+      Gtk.Box {
         orientation: vertical;
+        valign: start;
 
         Adw.HeaderBar titlebar {
           centering-policy: strict;
@@ -29,24 +83,6 @@ template AccumulateWindow : Adw.ApplicationWindow {
             menu-model: primary_menu;
           }
 
-          [end]
-          Gtk.Button send_button {
-            styles ["suggested-action"]
-            label: _("Send");
-            tooltip-text: _("Send anonymous date to the server");
-            use-underline: true;
-            action-name: "app.send";
-          }
-
-        }
-
-        Gtk.Box {
-          orientation: vertical;
-
-          Label {
-            label: _("Accumulate is a tool to collect anonymous data about your usage of GNOME.");
-            wrap: true;
-          }
         }
       }
     }
