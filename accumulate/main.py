@@ -41,7 +41,7 @@ class AccumulateApplication(Adw.Application):
     def __init__(self):
         super().__init__(application_id=app_id,
                          flags=Gio.ApplicationFlags.FLAGS_NONE)
-        self.server = self.settings.get_string("server")
+        self.server = self.settings.get_string("server-url")
         
         self.create_action('quit', self.quit, ['<primary>q'])
         self.create_action('about', self.show_about_window)
