@@ -6,88 +6,130 @@ template AccumulateWindow : Adw.ApplicationWindow {
   default-width: 1000;
   default-height: 700;
 
-  Adw.Flap flap {
-    Gtk.Overlay {
-
-      Adw.ToastOverlay toast_overlay {
-
-        Gtk.ScrolledWindow scrolled_window  {
-          focusable: true;
-          hexpand: true;
-          vexpand: true;
-
-          child: Gtk.Box {
-            orientation: vertical;
-
-            Adw.PreferencesGroup {
-              description: _("Accumulate is a tool to collect anonymous data about your usage of GNOME.");
+  Adw.Leaflet leaflet {
+    can-navigate-back: true;
+    can-unfold: false;
 
 
-            }
+    Gtk.Box main_view {
+      orientation: vertical;
 
-          };
-        }
-      }
-
-      [overlay]
-      Gtk.Revealer revealer {
-        valign: end;
-        halign: center;
-        transition-type: crossfade;
-        transition-duration: 200;
-        reveal-child: true;
-        child: Gtk.Box {
-          Gtk.Button send_button {
-            styles ["suggested-action"]
-            label: _("Share informations");
-            tooltip-text: _("Send anonymous date to the server");
-            use-underline: true;
-            action-name: "app.send";
-          }
-        };
-      }
-
-      [falp]
-      Gtk.Stack success {
-        hexpand: true;
-        overflow: hidden;
-        transition-type: crossfade;
-
-        Gtk.Box {
-          orientation: vertical;
-          spacing: 12;
-
-          Label {
-            label: _("Thank you for helping us improve GNOME!");
-          }
-
-          Label {
-            label: _("You can disable this at any time in the Privacy section of Settings.");
-          }
-        }
-      }
-
-      [overlay]
-      Gtk.Box {
-        orientation: vertical;
+      Adw.HeaderBar titlebar {
+        centering-policy: strict;
         valign: start;
 
-        Adw.HeaderBar titlebar {
-          centering-policy: strict;
+        [title]
+        Label title {
+          label: _("Accumulate");
+        }
+
+        [end]
+        Gtk.MenuButton {
+          icon-name: "open-menu-symbolic";
+          menu-model: primary_menu;
+        }
+      }
+
+      Gtk.Box {
+        orientation: vertical;
+        valign: center;
+        Adw.ViewStack view_stack {
+          vexpand: true;
+          hexpand: true;
+
+          Gtk.Stack main {
+
+            Gtk.Box {
 
 
-          [title]
-          Label title {
-            label: _("Accumulate");
+              Adw.PreferencesPage content { 
+                Adw.PreferencesGroup {
+                  description: _("The following inforrmations about your system will be shared with the GNOME Project, and will be used to improve the GNOME experience for you and other users. All information collected will be anonymous with no identifing data recorded.");
+
+                  Adw.ActionRow {
+                    title: _("Language");
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Theme");
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Language");
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Theme");
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Language");
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Theme");
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Language");
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Theme");
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Language");
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Theme");
+                  }
+                  
+                }
+              }
+            }
           }
 
-          [end]
-          Gtk.MenuButton {
-            icon-name: "open-menu-symbolic";
-            menu-model: primary_menu;
+
+          Gtk.Stack success {
+            hexpand: true;
+            overflow: hidden;
+
+            Gtk.Box {
+              orientation: vertical;
+              spacing: 12;
+
+              Label {
+                label: _("Thank you for helping us improve GNOME!");
+              }
+
+              Label {
+                label: _("You can disable this at any time in the Privacy section of Settings.");
+              }
+            }
           }
 
         }
+      }
+      
+
+      Gtk.Box bottom_bar {
+        orientation: horizontal;
+        valign: end;
+        halign: center;
+        margin-top: 10;
+        margin-bottom: 10;
+
+        
+        Gtk.Button send_button {
+          styles ["suggested-action"]
+          label: _("Share informations");
+          tooltip-text: _("Send anonymous date to the server");
+          use-underline: true;
+          action-name: "app.send";
+        }
+      
       }
     }
   }
