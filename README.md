@@ -2,6 +2,8 @@
 
 Accumulate GNOME info and send them to GNOME Team
 
+![In action](https://raw.githubusercontent.com/Atrophaneura/Accumulate/main/assets/main_view.png)
+
 ## Install 
 
 ## Contribute 
