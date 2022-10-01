@@ -46,46 +46,137 @@ template AccumulateWindow : Adw.ApplicationWindow {
                 Adw.PreferencesGroup {
                   description: _("The following inforrmations about your system will be shared with the GNOME Project, and will be used to improve the GNOME experience for you and other users. All information collected will be anonymous with no identifing data recorded.");
 
-                  Adw.ActionRow {
-                    title: _("Language");
-                  }
-
-                  Adw.ActionRow {
-                    title: _("Theme");
-                  }
-
-                  Adw.ActionRow {
-                    title: _("Language");
-                  }
-
-                  Adw.ActionRow {
-                    title: _("Theme");
-                  }
-
-                  Adw.ActionRow {
-                    title: _("Language");
-                  }
-
-                  Adw.ActionRow {
-                    title: _("Theme");
-                  }
-
-                  Adw.ActionRow {
-                    title: _("Language");
-                  }
-
-                  Adw.ActionRow {
-                    title: _("Theme");
-                  }
-
-                  Adw.ActionRow {
-                    title: _("Language");
-                  }
-
-                  Adw.ActionRow {
-                    title: _("Theme");
-                  }
+                  Adw.ExpanderRow {
+                    title: _("Hardware Informations");
                   
+                    Adw.ActionRow {
+                      title: _("Hardware model");
+
+                      [suffix]
+                      Label hardware_model {
+                        label: _("Lorem 1234");
+                      }
+                    }
+                    Adw.ActionRow {
+                      title: _("Hardware vendor");
+
+                      [suffix]
+                      Label hardware_vendor {
+                        label: _("Lorem 1234");
+                      }
+                    }
+                    Adw.ActionRow {
+                      title: _("Operating system");
+
+                      [suffix]
+                      Label operating_system {
+                        label: _("Arch Linux");
+                      }
+                    }
+                  }
+
+                  Adw.ExpanderRow {
+                    title: _("Flatpak");
+                  
+                    Adw.ActionRow {
+                      title: _("Flatpak installed");
+
+                      [suffix]
+                      Label flatpak_installed {
+                        label: _("Yes");
+                      }
+                    }
+                    Adw.ActionRow {
+                      title: _("Flatpak enabled");
+
+                      [suffix]
+                      Label flatpak_enabled {
+                        label: _("Filtered");
+                      }
+                    }
+                  }
+
+                  Adw.ExpanderRow {
+                    title: _("Sharing Settings");
+                  
+                    Adw.ActionRow {
+                      title: _("File sharing");
+
+                      [suffix]
+                      Label file_sharing {
+                        label: _("Active");
+                      }
+                    }
+                    Adw.ActionRow {
+                      title: _("Remote desktop");
+
+                      [suffix]
+                      Label remote_desktop {
+                        label: _("Active");
+                      }
+                    }
+                    Adw.ActionRow {
+                      title: _("Multimedia sharing");
+
+                      [suffix]
+                      Label multimedia_sharing {
+                        label: _("Active");
+                      }
+                    }
+                    Adw.ActionRow {
+                      title: _("Remote login");
+
+                      [suffix]
+                      Label remote_login {
+                        label: _("Active");
+                      }
+                    }
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Workspaces on primary display");
+
+                    [suffix]
+                    Label workspaces_on_primary_display {
+                      label: _("Yes");
+                    }
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Dynamic or fixed workspaces");
+
+                    [suffix]
+                    Label dynamic_or_fixed_workspaces {
+                      label: _("Dynamic");
+                    }
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Number of User accounts");
+
+                    [suffix]
+                    Label number_of_user_accounts {
+                      label: _("1");
+                    }
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Salted machine ID hash");
+
+                    [suffix]
+                    Label salted_machine_id_hash {
+                      label: _("Unique id");
+                    }
+                  }
+
+                  Adw.ActionRow {
+                    title: _("Default browser");
+
+                    [suffix]
+                    Label default_browser {
+                      label: _("Firefox");
+                    }
+                  }
                 }
               }
             }
