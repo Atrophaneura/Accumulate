@@ -383,7 +383,7 @@ def get_permission() -> bool:
         return False
 
 
-def upload_data(address: str, data: dict) -> bool:
+def upload_data(address: str, data: dict) -> requests.Response:
     """Upload collected data to address via HTTP post request
 
     @param address: HTTP address of recieving server
@@ -391,62 +391,15 @@ def upload_data(address: str, data: dict) -> bool:
     @return: False if error occured, True if successful
     """
 
-    try:
-        print("Uploading...")
+    print("Uploading...")
 
-        # ~ Send the data
-        r = requests.post(address, data=json.dumps(data))
+    # ~ Send the data
+    r = requests.post(address, data=json.dumps(data))
 
-        # ~ Raise HTTPError if request returned an unsuccessful status code
-        r.raise_for_status()
-
-    except requests.HTTPError:
-        print(f"Status {r.status_code}: An HTTP error occured.")
-        print(f"Server message: {r.text}")
-        return False
-    except requests.ConnectionError:
-        print("Connection Error: Error connecting to the server.")
-        print("Please check your internet connection and try again.\n")
-        raise
-    except requests.Timeout:
-        print("Timeout error: Request timed out.")
-        print("Please check your internet connection and try again.\n")
-        return False
-    except Exception:
-        print("Unknown error: Sending data unsuccessful, please, try again.\n")
-        raise
-    else:
-        # ~ No errors, print server output
-        print(f"Status {r.status_code}: {r.text}")
-        # ~ Prevent user from double-sending
-        create_status_file()
-        return True
-
-
-def main():
-    # ~ Address of a server to send the data to
-    ADDRESS = "https://gnome-info-collect-app.apps.openshift4.gnome.org"
-
-    check_already_uploaded()
-
-    output = GCollector().collect_data()
-    # ~ Validate the data and convert to dict-like format for better processing
-    try:
-        json.dumps(output)
-    except ValueError:
-        print("Error loading json data: invalid format.")
-        raise
-
-    present_collected_data(output)
-
-    if not get_permission():
-        print("Exiting...")
-        return
-
-    if upload_data(ADDRESS, output):
-        # ~ Data successfully uploaded, finish
-        print("Complete! Thank you for helping to improve GNOME.")
-
+    # ~ Raise HTTPError if request returned an unsuccessful status code
+    r.raise_for_status()
+    
+    return r
 
 if __name__ == "__main__":
     main()

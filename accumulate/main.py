@@ -31,7 +31,9 @@ import gi
 import json
 import os
 
-from .client import GCollector, STATUS_FILE, upload_data
+from .client import GCollector, STATUS_FILE, upload_data, create_status_file
+import requests
+import json
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -73,8 +75,34 @@ class AccumulateApplication(Adw.Application):
 
     def send_data(self, _unused, response):
         if response == "send":
-            upload_data(self.server, self.data)
-            self.win.view_stack.set_visible_child(self.win.success)
+            try:
+                r = requests.post(self.server, data=json.dumps(self.data))
+                # ~ Raise HTTPError if request returned an unsuccessful status code
+                r.raise_for_status()
+            except requests.HTTPError:
+                self.win.error.set_title(f"{r.status_code}: An HTTP error occured")
+                self.win.error.set_description(f"Server message: {str(r.text)}")
+                self.win.error_content.set_label(str(r.content))
+                self.win.error_content.set_visible(True)
+                self.win.view_stack.set_visible_child(self.win.error_stack)
+            except requests.ConnectionError:
+                self.win.error.set_title("Error connecting to the server")
+                self.win.error.set_description("Please check your internet connection and try again")
+                self.win.view_stack.set_visible_child(self.win.error_stack)
+            except requests.Timeout:
+                self.win.error.set_title("Request timed out")
+                self.win.error.set_description("Please check your internet connection and try again")
+                self.win.view_stack.set_visible_child(self.win.error_stack)
+            except Exception:
+                self.win.error.set_title("Unknown error")
+                self.win.error.set_description("Sending data unsuccessful, please, try again")
+                self.win.view_stack.set_visible_child(self.win.error_stack)
+            else:
+                # ~ No errors, print server output
+                print(f"Status {r.status_code}: {r.text}")
+                # ~ Prevent user from double-sending
+                create_status_file()
+                self.win.view_stack.set_visible_child(self.win.success)
     def do_activate(self):
         """Called when the application is activated.
 

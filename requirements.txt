@@ -7,3 +7,5 @@
 # mv pypi-dependencies.json build-aux/flatpak/
 #
 # or more simply, just push and the bot will do this for you.
+
+requests

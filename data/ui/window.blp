@@ -222,6 +222,42 @@ template AccumulateWindow : Adw.ApplicationWindow {
             }
           }
 
+
+          Gtk.Stack error_stack {
+            hexpand: true;
+            overflow: hidden;
+
+            Adw.StatusPage error {
+              title: _("Error while sending data");
+              description: _("Please report an issue to the GNOME Team.");
+              icon-name: "error-symbolic";
+
+              Gtk.Box {
+                margin-end: 50;
+                margin-start: 50;
+                styles ["card"]
+
+                Gtk.ScrolledWindow {
+                  margin-start: 12;
+                  margin-end: 12;
+                  min-content-height: 200;
+                  overflow: hidden;
+                  Gtk.Label error_content {
+                    hexpand: true;
+                    vexpand: true;
+                    visible: false;
+                    selectable: true;
+                    wrap: true;
+                    xalign: 0;
+                    yalign: 0;
+                    styles ["monospace", "terminal"]
+                  }
+                }
+              }
+
+            }
+          }
+
           Gtk.Stack already_submitted {
             hexpand: true;
             overflow: hidden;
