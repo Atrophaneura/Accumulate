@@ -232,7 +232,8 @@ template AccumulateWindow : Adw.ApplicationWindow {
               description: _("Please report an issue to the GNOME Team.");
               icon-name: "error-symbolic";
 
-              Gtk.Box {
+              Gtk.Box error_content {
+                visible: false;
                 margin-end: 50;
                 margin-start: 50;
                 styles ["card"]
@@ -242,10 +243,9 @@ template AccumulateWindow : Adw.ApplicationWindow {
                   margin-end: 12;
                   min-content-height: 200;
                   overflow: hidden;
-                  Gtk.Label error_content {
+                  Gtk.Label error_label {
                     hexpand: true;
                     vexpand: true;
-                    visible: false;
                     selectable: true;
                     wrap: true;
                     xalign: 0;

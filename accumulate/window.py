@@ -35,6 +35,7 @@ class AccumulateWindow(Adw.ApplicationWindow):
     error = Gtk.Template.Child()
     error_stack = Gtk.Template.Child()
     error_content = Gtk.Template.Child()
+    error_label = Gtk.Template.Child()
     content = Gtk.Template.Child()
     already_submitted = Gtk.Template.Child()
         

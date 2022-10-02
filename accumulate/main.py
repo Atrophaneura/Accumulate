@@ -82,7 +82,7 @@ class AccumulateApplication(Adw.Application):
             except requests.HTTPError:
                 self.win.error.set_title(f"{r.status_code}: An HTTP error occured")
                 self.win.error.set_description(f"Server message: {str(r.text)}")
-                self.win.error_content.set_label(str(r.content))
+                self.win.error_label.set_label(str(r.content))
                 self.win.error_content.set_visible(True)
                 self.win.view_stack.set_visible_child(self.win.error_stack)
             except requests.ConnectionError:
@@ -213,6 +213,25 @@ class AccumulateApplication(Adw.Application):
     def on_preferences_action(self, widget, _):
         """Callback for the app.preferences action."""
         print('app.preferences action activated')
+        
+        pref = Adw.PreferencesWindow()
+        pref.set_transient_for(self.props.active_window)
+        pref.set_title("Preferences")
+        page = Adw.PreferencesPage()
+        group = Adw.PreferencesGroup(title="Server")
+        self.server_row = Adw.EntryRow()
+        self.server_row.set_title("URL")
+        self.server_row.set_input_purpose(Gtk.InputPurpose.URL)
+        self.server_row.set_text(self.server)
+        self.server_row.connect("changed", self.on_server_entry_changed)
+        group.add(self.server_row)
+        page.add(group)
+        pref.add(page)
+        pref.present()
+        
+    def on_server_entry_changed(self, widget):
+        self.server = widget.get_text()
+        self.settings.set_string("server-url", self.server)
 
     def create_action(self, name, callback, shortcuts=None):
         """Add an application action.
