@@ -26,3 +26,7 @@ See [CONTRIBUTING]
 ### Translate 
 
 [![Translation status](https://hosted.weblate.org/widgets/atrophaneura/-/Accumulate/open-graph.png)](https://hosted.weblate.org/engage/atrophaneura/)
+
+## About
+
+Accumulate is a frontend of `gnome-info-collect` based on a mockup by Allan Day
